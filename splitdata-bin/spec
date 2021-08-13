@@ -1,0 +1,38 @@
+#include <nusys.h>
+
+beginseg
+	name    "code"
+	flags   BOOT OBJECT
+	entry   nuBoot
+    address NU_SPEC_BOOT_ADDR
+    stack   NU_SPEC_BOOT_STACK
+    include "codesegment.o"
+	include "$(ROOT)/usr/lib/PR/rspboot.o"
+	include "$(ROOT)/usr/lib/PR/gspF3DEX2.fifo.o"
+	include "$(ROOT)/usr/lib/PR/gspL3DEX2.fifo.o"
+	include "$(ROOT)/usr/lib/PR/gspF3DEX2.Rej.fifo.o"
+    include "$(ROOT)/usr/lib/PR/gspF3DEX2.NoN.fifo.o"
+    include "$(ROOT)/usr/lib/PR/gspF3DLX2.Rej.fifo.o"
+	include "$(ROOT)/usr/lib/PR/gspS2DEX2.fifo.o"
+endseg
+
+beginseg
+	name    "spr_bear"
+    flags   RAW
+	after	"code"
+	include "spr_bear.bin"
+endseg
+
+beginseg
+	name    "spr_burger"
+    flags   RAW
+	after	"spr_bear"
+	include "spr_burger.bin"
+endseg
+
+beginwave
+	name    "codesplit"
+	include "code"
+	include "spr_bear"
+	include "spr_burger"
+endwave
