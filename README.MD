@@ -12,7 +12,7 @@ These libultra examples exist to demonstrate different approaches to segmenting 
 **Companion Page:** https://n64brew.dev/wiki/Splitting_Assets_from_Code
 
 <ins>**splitdata-binram**</ins>  
-**Description:** The above sample, but using a buffer that's not part of the code segment.
+**Description:** The above sample, but using a buffer that is not part of the code segment.  
 **Companion Page:** https://n64brew.dev/wiki/Splitting_Assets_from_Code#Having_a_buffer_somewhere_in_RAM
 
 ### Compiling
