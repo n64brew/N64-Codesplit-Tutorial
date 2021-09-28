@@ -48,7 +48,7 @@ default: $(TARGETS)
 include $(ROOT)/usr/include/make/PRdefs
 
 CODESEGMENT = codesegment.o
-OBJECTS		= $(CODESEGMENT)
+OBJECTS		= $(CODESEGMENT) $(DATAFILES:.c=.o)
 APP         = $(TARGETS:.n64=.out)
 
 
@@ -90,7 +90,7 @@ include $(COMMONRULES)
 $(CODESEGMENT): $(CODEOBJECTS)
     $(LD) -o $(CODESEGMENT) -r $(CODEOBJECTS) $(LDFLAGS)
 
-$(TARGETS): $(OBJECTS) $(DATAFILES:.c=.o)
+$(TARGETS): $(OBJECTS)
     $(MAKEROM) spec $(MAKEROMFLAGS) -I$(NUSYSINC) -r $(TARGETS) -e $(APP) 
     @makemask $(TARGETS)
 ifeq ($(ALLOWREGISTER), 1)
